@@ -60,7 +60,7 @@ Nach erfolgreichem Build soll das Image auf **Docker Hub** veröffentlicht werde
 - Image wird mit `docker login` und `docker push` publiziert
 
 > Wichtig: Der Image-Name muss das Repository auf Docker Hub korrekt referenzieren  
-> (z. B. `mosazhaw/node-web-app`)
+> (z. B. `pugliale/node-web-app`)
 
 ---
 
@@ -114,8 +114,8 @@ Im ersten Schritt wurde das Projekt geklont und der enthaltene `Dockerfile` verw
 docker build -t devops-node-webapp .
 ```
 
-<img src="Images/Bild1.png" width="600">
-<img src="Images/Bild2.png" width="600">
+<img src="images/Bild1.png" width="600">
+<img src="images/Bild2.png" width="600">
 
 ---
 
@@ -129,13 +129,12 @@ docker run -d -p 3000:3000 devops-node-webapp
 
 Die App war anschliessend auf `http://localhost:3000` verfügbar.
 
-<img src="Images/Bild3.png" width="600">
-<img src="Images/Bild4.png" width="600">
-<img src="Images/Bild5.png" width="600">
+<img src="images/Bild3.png" width="600">
+<img src="images/Bild4.png" width="600">
+<img src="images/Bild5.png" width="600">
 
 ---
-
-## 🔧 Praktische Umsetzung – Teil 2/3  
+ 
 ### ⚙️ Jenkins Build-Job mit Dockerfile
 
 ---
@@ -144,9 +143,9 @@ Die App war anschliessend auf `http://localhost:3000` verfügbar.
 
 Jenkins wurde lokal via Docker gestartet. Danach wurde ein **neues Projekt (Freestyle-Job)** angelegt.
 
-<img src="Images/Bild6.png" width="600">
-<img src="Images/Bild7.png" width="600">
-<img src="Images/Bild8.png" width="600">
+<img src="images/Bild6.png" width="600">
+<img src="images/Bild7.png" width="600">
+<img src="images/Bild8.png" width="600">
 
 ---
 
@@ -154,8 +153,8 @@ Jenkins wurde lokal via Docker gestartet. Danach wurde ein **neues Projekt (Free
 
 Zunächst funktionierte der Build nicht korrekt, da die Prozessoranzahl auf 0 gesetzt war. Nach manueller Anpassung auf **2 Prozessoren** konnte der Build erfolgreich durchgeführt werden.
 
-<img src="Images/Bild9.png" width="600">
-<img src="Images/Bild10.png" width="600">
+<img src="images/Bild9.png" width="600">
+<img src="images/Bild10.png" width="600">
 
 ---
 
@@ -167,9 +166,9 @@ Im nächsten Schritt wurde die Build-Umgebung eingerichtet und `npm install` im 
 npm install
 ```
 
-<img src="Images/Bild11.png" width="600">
-<img src="Images/Bild12.png" width="600">
-<img src="Images/Bild13.png" width="600">
+<img src="images/Bild11.png" width="600">
+<img src="images/Bild12.png" width="600">
+<img src="images/Bild13.png" width="600">
 
 ---
 
@@ -181,8 +180,8 @@ npm install
 
 Im Jenkins-Interface wurde die Verbindung zum lokalen Docker-Daemon über `tcp://host.docker.internal:2375` eingerichtet.
 
-<img src="Images/Bild14.png" width="600">
-<img src="Images/Bild15.png" width="600">
+<img src="images/Bild14.png" width="600">
+<img src="images/Bild15.png" width="600">
 
 ---
 
@@ -194,9 +193,9 @@ Ein **Build-Job** wurde so konfiguriert, dass er das Projekt aus GitHub clont un
 docker build -t devops-node-webapp .
 ```
 
-<img src="Images/Bild16.png" width="600">
-<img src="Images/Bild17.png" width="600">
-<img src="Images/Bild18.png" width="600">
+<img src="images/Bild16.png" width="600">
+<img src="images/Bild17.png" width="600">
+<img src="images/Bild18.png" width="600">
 
 ---
 
@@ -216,9 +215,9 @@ docker rm -f node-app
 docker run -d -p 3000:3000 --name node-app devops-node-webapp
 ```
 
-<img src="Images/Bild19.png" width="600">
-<img src="Images/Bild20.png" width="600">
-<img src="Images/Bild21.png" width="600">
+<img src="images/Bild19.png" width="600">
+<img src="images/Bild20.png" width="600">
+<img src="images/Bild21.png" width="600">
 
 ---
 
@@ -226,8 +225,8 @@ docker run -d -p 3000:3000 --name node-app devops-node-webapp
 
 Die Verknüpfung der Jobs wurde so eingestellt, dass der **Deploy-Job nur bei erfolgreichem Build** ausgeführt wird.
 
-<img src="Images/Bild22.png" width="600">
-<img src="Images/Bild23.png" width="600">
+<img src="images/Bild22.png" width="600">
+<img src="images/Bild23.png" width="600">
 
 ---
 
@@ -245,9 +244,9 @@ docker push <dockerhub_username>/node-web-app
 
 Ein Docker-Access-Token wurde in Jenkins als Credential gespeichert und über `withCredentials` verwendet.
 
-<img src="Images/Bild24.png" width="600">
-<img src="Images/Bild25.png" width="600">
-<img src="Images/Bild26.png" width="600">
+<img src="images/Bild24.png" width="600">
+<img src="images/Bild25.png" width="600">
+<img src="images/Bild26.png" width="600">
 
 ---
 
@@ -269,9 +268,9 @@ stage('Deploy to Render') {
 }
 ```
 
-<img src="Images/Bild27.png" width="600">
-<img src="Images/Bild28.png" width="600">
-<img src="Images/Bild29.png" width="600">
+<img src="images/Bild27.png" width="600">
+<img src="images/Bild28.png" width="600">
+<img src="images/Bild29.png" width="600">
 
 ---
 
@@ -283,9 +282,9 @@ Zusätzlich wurde die Jenkins-Pipeline so erweitert, dass sie bei jedem Git Push
 - Jenkins erkennt Änderungen und führt die Jobs aus
 - Volle CI/CD-Pipeline von Push bis Deployment
 
-<img src="Images/Bild30.png" width="600">
-<img src="Images/Bild31.png" width="600">
-<img src="Images/Bild32.png" width="600">
+<img src="images/Bild30.png" width="600">
+<img src="images/Bild31.png" width="600">
+<img src="images/Bild32.png" width="600">
 
 ---
 
@@ -296,10 +295,10 @@ Zusätzlich wurde die Jenkins-Pipeline so erweitert, dass sie bei jedem Git Push
 - Render.com Service live geschaltet
 - Logs und Pipelineergebnisse zeigen stabilen Ablauf
 
-<img src="Images/Bild33.png" width="600">
-<img src="Images/Bild34.png" width="600">
-<img src="Images/Bild35.png" width="600">
-<img src="Images/Bild36.png" width="600">
+<img src="images/Bild33.png" width="600">
+<img src="images/Bild34.png" width="600">
+<img src="images/Bild35.png" width="600">
+<img src="images/Bild36.png" width="600">
 
 ## 🧠 Erkenntnisse & Fazit
 
